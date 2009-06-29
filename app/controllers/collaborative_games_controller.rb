@@ -46,10 +46,10 @@ class CollaborativeGamesController < ApplicationController
   end
   
   def join
-    begin
+    if not @game.participants.exists? current_user then
       @game.participants << current_user
       flash[:notice] = "Joined the game."
-    rescue
+    else
       flash[:error] = "You already joined the game."
     end
     
