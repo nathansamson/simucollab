@@ -1,6 +1,6 @@
 <h1>Game <%=h @game.name %></h1>
 <p><%=h @game.description %></p>
-<p><%=h @game.leader %></p>
+<p><%=h @game.user.email %></p>
 
 <% if @can_edit %>
 <%= link_to "Edit", edit_collaborative_game_path %>

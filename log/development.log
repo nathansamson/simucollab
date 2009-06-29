@@ -5072,3 +5072,1017 @@ Processing CollaborativeGamesController#index (for 127.0.0.1 at 2009-06-29 17:47
 Rendering template within layouts/application
 Rendering collaborative_games/index
 Completed in 13ms (View: 6, DB: 1) | 200 OK [http://localhost/games]
+
+
+Processing CollaborativeGamesController#index (for 127.0.0.1 at 2009-06-29 17:53:38) [GET]
+  Parameters: {"action"=>"index", "controller"=>"collaborative_games"}
+  [4;35;1mCollaborativeGame Load (1.2ms)[0m   [0mSELECT * FROM "collaborative_games" [0m
+Rendering template within layouts/application
+Rendering collaborative_games/index
+Completed in 45ms (View: 6, DB: 1) | 200 OK [http://localhost/games]
+  [4;36;1mSQL (0.8ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090626120436)
+Migrating to CreateCollaborativeGames (20090628144544)
+Migrating to AddCoordinatorConnectionToGame (20090629155507)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSQLite3::SQLException: no such table: CollaborativeGames: ALTER TABLE "CollaborativeGames" ADD "User_id" integer[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090626120436)
+Migrating to CreateCollaborativeGames (20090628144544)
+Migrating to AddCoordinatorConnectionToGame (20090629155507)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSQLite3::SQLException: no such table: CollaborativeGames: ALTER TABLE "CollaborativeGames" ADD "User_id" integer[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090626120436)
+Migrating to CreateCollaborativeGames (20090628144544)
+Migrating to AddCoordinatorConnectionToGame (20090629155507)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSQLite3::SQLException: no such table: CollaborativeGames: ALTER TABLE "CollaborativeGames" ADD "Users_id" integer[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090626120436)
+Migrating to CreateCollaborativeGames (20090628144544)
+Migrating to AddCoordinatorConnectionToGame (20090629155507)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mALTER TABLE "collaborative_games" ADD "users_id" integer[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCREATE TEMPORARY TABLE "altered_collaborative_games" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "leader" varchar(255), "created_at" datetime, "updated_at" datetime, "users_id" integer) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("collaborative_games")[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mDROP TABLE "collaborative_games"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mCREATE TABLE "collaborative_games" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "created_at" datetime, "updated_at" datetime, "users_id" integer) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("altered_collaborative_games")[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mDROP TABLE "altered_collaborative_games"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090629155507')[0m
+  [4;35;1mSQL (0.4ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.2ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("collaborative_games")[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("users")[0m
+
+
+Processing CollaborativeGamesController#index (for 127.0.0.1 at 2009-06-29 18:04:33) [GET]
+  Parameters: {"action"=>"index", "controller"=>"collaborative_games"}
+  [4;36;1mCollaborativeGame Load (2.0ms)[0m   [0;1mSELECT * FROM "collaborative_games" [0m
+Rendering template within layouts/application
+Rendering collaborative_games/index
+
+ActionView::TemplateError (undefined method `user' for #<CollaborativeGame:0x7f9a4f0dc370>) on line #6 of app/views/collaborative_games/index.html.erb:
+3: <% @games.each do |game| %>
+4:     <tr>
+5:         <td><%= link_to game.name, game %></td>
+6:         <td><%=h game.user.email %></td>
+7:         <td><%=h game.description %></td>
+8:     </tr>
+9: <% end %>
+
+    app/views/collaborative_games/index.html.erb:6
+    app/views/collaborative_games/index.html.erb:3:in `each'
+    app/views/collaborative_games/index.html.erb:3
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (139.5ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CollaborativeGamesController#index (for 127.0.0.1 at 2009-06-29 18:04:46) [GET]
+  Parameters: {"action"=>"index", "controller"=>"collaborative_games"}
+  [4;35;1mCollaborativeGame Load (2.0ms)[0m   [0mSELECT * FROM "collaborative_games" [0m
+Rendering template within layouts/application
+Rendering collaborative_games/index
+
+ActionView::TemplateError (wrong number of arguments (0 for 1)) on line #6 of app/views/collaborative_games/index.html.erb:
+3: <% @games.each do |game| %>
+4:     <tr>
+5:         <td><%= link_to game.name, game %></td>
+6:         <td><%=h  %></td>
+7:         <td><%=h game.description %></td>
+8:     </tr>
+9: <% end %>
+
+    app/views/collaborative_games/index.html.erb:6:in `h'
+    app/views/collaborative_games/index.html.erb:6
+    app/views/collaborative_games/index.html.erb:3:in `each'
+    app/views/collaborative_games/index.html.erb:3
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (162.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CollaborativeGamesController#index (for 127.0.0.1 at 2009-06-29 18:04:53) [GET]
+  Parameters: {"action"=>"index", "controller"=>"collaborative_games"}
+  [4;36;1mCollaborativeGame Load (1.1ms)[0m   [0;1mSELECT * FROM "collaborative_games" [0m
+Rendering template within layouts/application
+Rendering collaborative_games/index
+Completed in 17ms (View: 9, DB: 1) | 200 OK [http://localhost/games]
+
+
+Processing CollaborativeGamesController#new (for 127.0.0.1 at 2009-06-29 18:04:57) [GET]
+  Parameters: {"action"=>"new", "controller"=>"collaborative_games"}
+Rendering template within layouts/application
+Rendering collaborative_games/new
+Rendered collaborative_games/_form (1.5ms)
+Completed in 28ms (View: 13, DB: 0) | 200 OK [http://localhost/games/new]
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:09:09) [GET]
+  Parameters: {"action"=>"show", "id"=>"7", "controller"=>"collaborative_games"}
+  [4;35;1mCollaborativeGame Load (0.3ms)[0m   [0mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 7) [0m
+Rendering template within layouts/application
+Rendering collaborative_games/show
+
+ActionView::TemplateError (undefined method `leader' for #<CollaborativeGame:0x7f9a4f1bd898>) on line #3 of app/views/collaborative_games/show.html.erb:
+1: <h1>Game <%=h @game.name %></h1>
+2: <p><%=h @game.description %></p>
+3: <p><%=h @game.leader %></p>
+4: 
+5: <% if @can_edit %>
+6: <%= link_to "Edit", edit_collaborative_game_path %>
+
+    app/views/collaborative_games/show.html.erb:3
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (40.2ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:09:20) [GET]
+  Parameters: {"action"=>"show", "id"=>"7", "controller"=>"collaborative_games"}
+  [4;36;1mCollaborativeGame Load (0.6ms)[0m   [0;1mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 7) [0m
+Rendering template within layouts/application
+Rendering collaborative_games/show
+
+ActionView::TemplateError (undefined method `leader' for #<CollaborativeGame:0x7f9a4f3995e0>) on line #3 of app/views/collaborative_games/show.html.erb:
+1: <h1>Game <%=h @game.name %></h1>
+2: <p><%=h @game.description %></p>
+3: <p><%=h @game.leader %></p>
+4: 
+5: <% if @can_edit %>
+6: <%= link_to "Edit", edit_collaborative_game_path %>
+
+    app/views/collaborative_games/show.html.erb:3
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (40.7ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:09:32) [GET]
+  Parameters: {"action"=>"show", "id"=>"7", "controller"=>"collaborative_games"}
+  [4;35;1mCollaborativeGame Load (0.6ms)[0m   [0mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 7) [0m
+Rendering template within layouts/application
+Rendering collaborative_games/show
+Completed in 24ms (View: 8, DB: 1) | 200 OK [http://localhost/games/7]
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:09:47) [GET]
+  Parameters: {"action"=>"show", "id"=>"7", "controller"=>"collaborative_games"}
+  [4;36;1mCollaborativeGame Load (0.6ms)[0m   [0;1mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 7) [0m
+Rendering template within layouts/application
+Rendering collaborative_games/show
+Completed in 113ms (View: 97, DB: 1) | 200 OK [http://localhost/games/7]
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:09:59) [GET]
+  Parameters: {"action"=>"show", "id"=>"7", "controller"=>"collaborative_games"}
+  [4;35;1mCollaborativeGame Load (0.6ms)[0m   [0mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 7) [0m
+
+NoMethodError (undefined method `user' for #<CollaborativeGame:0x7f9a4f370d48>):
+  app/controllers/collaborative_games_controller.rb:12:in `show'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (73.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:10:03) [GET]
+  Parameters: {"action"=>"show", "id"=>"7", "controller"=>"collaborative_games"}
+  [4;36;1mCollaborativeGame Load (0.6ms)[0m   [0;1mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 7) [0m
+
+NoMethodError (undefined method `users' for #<CollaborativeGame:0x7f9a4f0fb1d0>):
+  app/controllers/collaborative_games_controller.rb:12:in `show'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (42.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:10:37) [GET]
+  Parameters: {"action"=>"show", "id"=>"7", "controller"=>"collaborative_games"}
+  [4;35;1mCollaborativeGame Load (0.3ms)[0m   [0mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 7) [0m
+
+NameError (uninitialized constant CollaborativeGame::Users):
+  app/controllers/collaborative_games_controller.rb:12:in `show'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (39.8ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:10:43) [GET]
+  Parameters: {"action"=>"show", "id"=>"7", "controller"=>"collaborative_games"}
+  [4;36;1mCollaborativeGame Load (0.5ms)[0m   [0;1mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 7) [0m
+
+NoMethodError (undefined method `users' for #<CollaborativeGame:0x7f9a4f106aa8>):
+  app/controllers/collaborative_games_controller.rb:12:in `show'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (47.7ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:10:55) [GET]
+  Parameters: {"action"=>"show", "id"=>"7", "controller"=>"collaborative_games"}
+  [4;35;1mCollaborativeGame Load (0.3ms)[0m   [0mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 7) [0m
+
+NameError (uninitialized constant CollaborativeGame::Users):
+  app/controllers/collaborative_games_controller.rb:12:in `show'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (40.5ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:11:07) [GET]
+  Parameters: {"action"=>"show", "id"=>"7", "controller"=>"collaborative_games"}
+  [4;36;1mCollaborativeGame Load (0.5ms)[0m   [0;1mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 7) [0m
+Rendering template within layouts/application
+Rendering collaborative_games/show
+Completed in 19ms (View: 4, DB: 1) | 200 OK [http://localhost/games/7]
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:11:16) [GET]
+  Parameters: {"action"=>"show", "id"=>"7", "controller"=>"collaborative_games"}
+  [4;35;1mCollaborativeGame Load (0.5ms)[0m   [0mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 7) [0m
+
+NoMethodError (undefined method `user' for #<CollaborativeGame:0x7f9a4f061828>):
+  app/controllers/collaborative_games_controller.rb:12:in `show'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (184.6ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:11:50) [GET]
+  Parameters: {"action"=>"show", "id"=>"7", "controller"=>"collaborative_games"}
+  [4;36;1mCollaborativeGame Load (0.4ms)[0m   [0;1mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 7) [0m
+Rendering template within layouts/application
+Rendering collaborative_games/show
+Completed in 28ms (View: 3, DB: 0) | 200 OK [http://localhost/games/7]
+
+
+Processing CollaborativeGamesController#new (for 127.0.0.1 at 2009-06-29 18:12:13) [GET]
+  Parameters: {"action"=>"new", "controller"=>"collaborative_games"}
+Rendering template within layouts/application
+Rendering collaborative_games/new
+Rendered collaborative_games/_form (0.7ms)
+Completed in 11ms (View: 4, DB: 0) | 200 OK [http://localhost/games/new]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-06-29 18:12:16) [GET]
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering template within layouts/application
+Rendering home/index
+Completed in 14ms (View: 12, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2009-06-29 18:12:18) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 110ms (View: 85, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2009-06-29 18:12:22) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"remember_me"=>"0", "password"=>"[FILTERED]", "email"=>"lola@lola.lola"}, "action"=>"create", "authenticity_token"=>"lAdsUQnmDhlRmLU5vBwGQ5f4EcOEPYXgrec5wJwQLTQ=", "controller"=>"user_sessions"}
+  [4;35;1mUser Load (0.9ms)[0m   [0mSELECT * FROM "users" WHERE (LOWER("users".email) = 'lola@lola.lola') LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 42ms (DB: 1) | 302 Found [http://localhost/user_session]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-06-29 18:12:22) [GET]
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '5') LIMIT 1[0m
+Completed in 36ms (View: 30, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing CollaborativeGamesController#new (for 127.0.0.1 at 2009-06-29 18:12:29) [GET]
+  Parameters: {"action"=>"new", "controller"=>"collaborative_games"}
+Rendering template within layouts/application
+Rendering collaborative_games/new
+Rendered collaborative_games/_form (0.7ms)
+Completed in 15ms (View: 8, DB: 0) | 200 OK [http://localhost/games/new]
+
+
+Processing CollaborativeGamesController#create (for 127.0.0.1 at 2009-06-29 18:12:35) [POST]
+  Parameters: {"commit"=>"Start game", "action"=>"create", "authenticity_token"=>"lAdsUQnmDhlRmLU5vBwGQ5f4EcOEPYXgrec5wJwQLTQ=", "controller"=>"collaborative_games", "collaborative_game"=>{"name"=>"Hi all", "description"=>"I'm a user"}}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '5') LIMIT 1[0m
+  [4;36;1mCollaborativeGame Create (0.4ms)[0m   [0;1mINSERT INTO "collaborative_games" ("name", "users_id", "created_at", "updated_at", "description") VALUES('Hi all', NULL, '2009-06-29 16:12:35', '2009-06-29 16:12:35', 'I''m a user')[0m
+Redirected to http://localhost:3000/games/8
+Completed in 166ms (DB: 1) | 302 Found [http://localhost/games]
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:12:35) [GET]
+  Parameters: {"action"=>"show", "id"=>"8", "controller"=>"collaborative_games"}
+  [4;35;1mCollaborativeGame Load (0.6ms)[0m   [0mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 8) [0m
+Rendering template within layouts/application
+Rendering collaborative_games/show
+Completed in 16ms (View: 3, DB: 1) | 200 OK [http://localhost/games/8]
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:12:55) [GET]
+  Parameters: {"action"=>"show", "id"=>"8", "controller"=>"collaborative_games"}
+  [4;36;1mCollaborativeGame Load (0.6ms)[0m   [0;1mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 8) [0m
+Rendering template within layouts/application
+Rendering collaborative_games/show
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.email) on line #3 of app/views/collaborative_games/show.html.erb:
+1: <h1>Game <%=h @game.name %></h1>
+2: <p><%=h @game.description %></p>
+3: <p><%=h @game.user.email %></p>
+4: 
+5: <% if @can_edit %>
+6: <%= link_to "Edit", edit_collaborative_game_path %>
+
+    app/views/collaborative_games/show.html.erb:3
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (39.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:16:28) [GET]
+  Parameters: {"action"=>"show", "id"=>"8", "controller"=>"collaborative_games"}
+  [4;35;1mCollaborativeGame Load (0.3ms)[0m   [0mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 8) [0m
+Rendering template within layouts/application
+Rendering collaborative_games/show
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.email) on line #3 of app/views/collaborative_games/show.html.erb:
+1: <h1>Game <%=h @game.name %></h1>
+2: <p><%=h @game.description %></p>
+3: <p><%=h @game.user.email %></p>
+4: 
+5: <% if @can_edit %>
+6: <%= link_to "Edit", edit_collaborative_game_path %>
+
+    app/views/collaborative_games/show.html.erb:3
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (40.7ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CollaborativeGamesController#new (for 127.0.0.1 at 2009-06-29 18:16:30) [GET]
+  Parameters: {"action"=>"new", "controller"=>"collaborative_games"}
+Rendering template within layouts/application
+Rendering collaborative_games/new
+Rendered collaborative_games/_form (0.6ms)
+Completed in 11ms (View: 4, DB: 0) | 200 OK [http://localhost/games/new]
+
+
+Processing CollaborativeGamesController#create (for 127.0.0.1 at 2009-06-29 18:16:37) [POST]
+  Parameters: {"commit"=>"Start game", "action"=>"create", "authenticity_token"=>"lAdsUQnmDhlRmLU5vBwGQ5f4EcOEPYXgrec5wJwQLTQ=", "controller"=>"collaborative_games", "collaborative_game"=>{"name"=>"Hi all, todeledio", "description"=>"sdsdmlsd"}}
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '5') LIMIT 1[0m
+  [4;35;1mCollaborativeGame Create (0.3ms)[0m   [0mINSERT INTO "collaborative_games" ("name", "users_id", "created_at", "updated_at", "description") VALUES('Hi all, todeledio', NULL, '2009-06-29 16:16:37', '2009-06-29 16:16:37', 'sdsdmlsd')[0m
+Redirected to http://localhost:3000/games/9
+Completed in 157ms (DB: 1) | 302 Found [http://localhost/games]
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:16:37) [GET]
+  Parameters: {"action"=>"show", "id"=>"9", "controller"=>"collaborative_games"}
+  [4;36;1mCollaborativeGame Load (0.3ms)[0m   [0;1mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 9) [0m
+Rendering template within layouts/application
+Rendering collaborative_games/show
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.email) on line #3 of app/views/collaborative_games/show.html.erb:
+1: <h1>Game <%=h @game.name %></h1>
+2: <p><%=h @game.description %></p>
+3: <p><%=h @game.user.email %></p>
+4: 
+5: <% if @can_edit %>
+6: <%= link_to "Edit", edit_collaborative_game_path %>
+
+    app/views/collaborative_games/show.html.erb:3
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (40.9ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CollaborativeGamesController#new (for 127.0.0.1 at 2009-06-29 18:19:08) [GET]
+  Parameters: {"action"=>"new", "controller"=>"collaborative_games"}
+Rendering template within layouts/application
+Rendering collaborative_games/new
+Rendered collaborative_games/_form (0.6ms)
+Completed in 10ms (View: 4, DB: 0) | 200 OK [http://localhost/games/new]
+
+
+Processing CollaborativeGamesController#create (for 127.0.0.1 at 2009-06-29 18:19:13) [POST]
+  Parameters: {"commit"=>"Start game", "action"=>"create", "authenticity_token"=>"lAdsUQnmDhlRmLU5vBwGQ5f4EcOEPYXgrec5wJwQLTQ=", "controller"=>"collaborative_games", "collaborative_game"=>{"name"=>"SLMD", "description"=>"sdml"}}
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '5') LIMIT 1[0m
+  [4;36;1mCollaborativeGame Create (0.3ms)[0m   [0;1mINSERT INTO "collaborative_games" ("name", "users_id", "created_at", "updated_at", "description") VALUES('SLMD', NULL, '2009-06-29 16:19:13', '2009-06-29 16:19:13', 'sdml')[0m
+Redirected to http://localhost:3000/games/10
+Completed in 34ms (DB: 1) | 302 Found [http://localhost/games]
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:19:13) [GET]
+  Parameters: {"action"=>"show", "id"=>"10", "controller"=>"collaborative_games"}
+  [4;35;1mCollaborativeGame Load (0.3ms)[0m   [0mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 10) [0m
+Rendering template within layouts/application
+Rendering collaborative_games/show
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.email) on line #3 of app/views/collaborative_games/show.html.erb:
+1: <h1>Game <%=h @game.name %></h1>
+2: <p><%=h @game.description %></p>
+3: <p><%=h @game.user.email %></p>
+4: 
+5: <% if @can_edit %>
+6: <%= link_to "Edit", edit_collaborative_game_path %>
+
+    app/views/collaborative_games/show.html.erb:3
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (44.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CollaborativeGamesController#new (for 127.0.0.1 at 2009-06-29 18:19:41) [GET]
+  Parameters: {"action"=>"new", "controller"=>"collaborative_games"}
+Rendering template within layouts/application
+Rendering collaborative_games/new
+Rendered collaborative_games/_form (0.7ms)
+Completed in 13ms (View: 4, DB: 0) | 200 OK [http://localhost/games/new]
+
+
+Processing CollaborativeGamesController#create (for 127.0.0.1 at 2009-06-29 18:19:44) [POST]
+  Parameters: {"commit"=>"Start game", "action"=>"create", "authenticity_token"=>"lAdsUQnmDhlRmLU5vBwGQ5f4EcOEPYXgrec5wJwQLTQ=", "controller"=>"collaborative_games", "collaborative_game"=>{"name"=>"sdsd", "description"=>"sdsd"}}
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '5') LIMIT 1[0m
+  [4;35;1mCollaborativeGame Create (0.6ms)[0m   [0mINSERT INTO "collaborative_games" ("name", "users_id", "created_at", "updated_at", "description") VALUES('sdsd', NULL, '2009-06-29 16:19:44', '2009-06-29 16:19:44', 'sdsd')[0m
+Redirected to http://localhost:3000/games/11
+Completed in 59ms (DB: 1) | 302 Found [http://localhost/games]
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:19:44) [GET]
+  Parameters: {"action"=>"show", "id"=>"11", "controller"=>"collaborative_games"}
+  [4;36;1mCollaborativeGame Load (0.6ms)[0m   [0;1mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 11) [0m
+Rendering template within layouts/application
+Rendering collaborative_games/show
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.email) on line #3 of app/views/collaborative_games/show.html.erb:
+1: <h1>Game <%=h @game.name %></h1>
+2: <p><%=h @game.description %></p>
+3: <p><%=h @game.user.email %></p>
+4: 
+5: <% if @can_edit %>
+6: <%= link_to "Edit", edit_collaborative_game_path %>
+
+    app/views/collaborative_games/show.html.erb:3
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (131.5ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CollaborativeGamesController#new (for 127.0.0.1 at 2009-06-29 18:23:10) [GET]
+  Parameters: {"action"=>"new", "controller"=>"collaborative_games"}
+Rendering template within layouts/application
+Rendering collaborative_games/new
+Rendered collaborative_games/_form (0.7ms)
+Completed in 12ms (View: 4, DB: 0) | 200 OK [http://localhost/games/new]
+
+
+Processing CollaborativeGamesController#create (for 127.0.0.1 at 2009-06-29 18:23:18) [POST]
+  Parameters: {"commit"=>"Start game", "action"=>"create", "authenticity_token"=>"lAdsUQnmDhlRmLU5vBwGQ5f4EcOEPYXgrec5wJwQLTQ=", "controller"=>"collaborative_games", "collaborative_game"=>{"name"=>"Hi all", "description"=>"googling goo"}}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '5') LIMIT 1[0m
+  [4;36;1mCollaborativeGame Create (0.4ms)[0m   [0;1mINSERT INTO "collaborative_games" ("name", "users_id", "created_at", "updated_at", "description") VALUES('Hi all', NULL, '2009-06-29 16:23:18', '2009-06-29 16:23:18', 'googling goo')[0m
+Redirected to http://localhost:3000/games/12
+Completed in 54ms (DB: 1) | 302 Found [http://localhost/games]
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:23:18) [GET]
+  Parameters: {"action"=>"show", "id"=>"12", "controller"=>"collaborative_games"}
+  [4;35;1mCollaborativeGame Load (0.3ms)[0m   [0mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 12) [0m
+Rendering template within layouts/application
+Rendering collaborative_games/show
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.email) on line #3 of app/views/collaborative_games/show.html.erb:
+1: <h1>Game <%=h @game.name %></h1>
+2: <p><%=h @game.description %></p>
+3: <p><%=h @game.user.email %></p>
+4: 
+5: <% if @can_edit %>
+6: <%= link_to "Edit", edit_collaborative_game_path %>
+
+    app/views/collaborative_games/show.html.erb:3
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (131.9ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:23:23) [GET]
+  Parameters: {"action"=>"show", "id"=>"3", "controller"=>"collaborative_games"}
+  [4;36;1mCollaborativeGame Load (0.3ms)[0m   [0;1mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 3) [0m
+Rendering template within layouts/application
+Rendering collaborative_games/show
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.email) on line #3 of app/views/collaborative_games/show.html.erb:
+1: <h1>Game <%=h @game.name %></h1>
+2: <p><%=h @game.description %></p>
+3: <p><%=h @game.user.email %></p>
+4: 
+5: <% if @can_edit %>
+6: <%= link_to "Edit", edit_collaborative_game_path %>
+
+    app/views/collaborative_games/show.html.erb:3
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (42.6ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:23:30) [GET]
+  Parameters: {"action"=>"show", "id"=>"12", "controller"=>"collaborative_games"}
+  [4;35;1mCollaborativeGame Load (0.3ms)[0m   [0mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 12) [0m
+Rendering template within layouts/application
+Rendering collaborative_games/show
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.email) on line #3 of app/views/collaborative_games/show.html.erb:
+1: <h1>Game <%=h @game.name %></h1>
+2: <p><%=h @game.description %></p>
+3: <p><%=h @game.user.email %></p>
+4: 
+5: <% if @can_edit %>
+6: <%= link_to "Edit", edit_collaborative_game_path %>
+
+    app/views/collaborative_games/show.html.erb:3
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (41.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:32:25) [GET]
+  Parameters: {"action"=>"show", "id"=>"12", "controller"=>"collaborative_games"}
+  [4;36;1mCollaborativeGame Load (0.6ms)[0m   [0;1mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 12) [0m
+Rendering template within layouts/application
+Rendering collaborative_games/show
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.email) on line #3 of app/views/collaborative_games/show.html.erb:
+1: <h1>Game <%=h @game.name %></h1>
+2: <p><%=h @game.description %></p>
+3: <p><%=h @game.user.email %></p>
+4: 
+5: <% if @can_edit %>
+6: <%= link_to "Edit", edit_collaborative_game_path %>
+
+    app/views/collaborative_games/show.html.erb:3
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (162.1ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CollaborativeGamesController#new (for 127.0.0.1 at 2009-06-29 18:32:29) [GET]
+  Parameters: {"action"=>"new", "controller"=>"collaborative_games"}
+Rendering template within layouts/application
+Rendering collaborative_games/new
+Rendered collaborative_games/_form (1.4ms)
+Completed in 22ms (View: 8, DB: 0) | 200 OK [http://localhost/games/new]
+
+
+Processing CollaborativeGamesController#create (for 127.0.0.1 at 2009-06-29 18:32:31) [POST]
+  Parameters: {"commit"=>"Start game", "action"=>"create", "authenticity_token"=>"lAdsUQnmDhlRmLU5vBwGQ5f4EcOEPYXgrec5wJwQLTQ=", "controller"=>"collaborative_games", "collaborative_game"=>{"name"=>"sd", "description"=>"sd"}}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '5') LIMIT 1[0m
+  [4;36;1mCollaborativeGame Create (0.5ms)[0m   [0;1mINSERT INTO "collaborative_games" ("name", "users_id", "created_at", "updated_at", "description") VALUES('sd', NULL, '2009-06-29 16:32:31', '2009-06-29 16:32:31', 'sd')[0m
+Redirected to http://localhost:3000/games/13
+Completed in 56ms (DB: 1) | 302 Found [http://localhost/games]
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:32:32) [GET]
+  Parameters: {"action"=>"show", "id"=>"13", "controller"=>"collaborative_games"}
+  [4;35;1mCollaborativeGame Load (0.3ms)[0m   [0mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 13) [0m
+Rendering template within layouts/application
+Rendering collaborative_games/show
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.email) on line #3 of app/views/collaborative_games/show.html.erb:
+1: <h1>Game <%=h @game.name %></h1>
+2: <p><%=h @game.description %></p>
+3: <p><%=h @game.user.email %></p>
+4: 
+5: <% if @can_edit %>
+6: <%= link_to "Edit", edit_collaborative_game_path %>
+
+    app/views/collaborative_games/show.html.erb:3
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (45.0ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (5.6ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (4.5ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090626120436)
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255), "crypted_password" varchar(255), "password_salt" varchar(255), "persistence_token" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090626120436')[0m
+Migrating to CreateCollaborativeGames (20090628144544)
+  [4;36;1mSQL (0.4ms)[0m   [0;1mCREATE TABLE "collaborative_games" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "user_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090628144544')[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("collaborative_games")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("users")[0m
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:35:25) [GET]
+  Parameters: {"action"=>"show", "id"=>"13", "controller"=>"collaborative_games"}
+  [4;36;1mCollaborativeGame Load (0.2ms)[0m   [0;1mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 13) [0m
+Redirected to http://localhost:3000/
+Filter chain halted as [:find_game] rendered_or_redirected.
+Completed in 11ms (DB: 0) | 302 Found [http://localhost/games/13]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-06-29 18:35:25) [GET]
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '5') LIMIT 1[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 5) LIMIT 1[0m
+Completed in 34ms (View: 29, DB: 1) | 200 OK [http://localhost/]
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2009-06-29 18:35:28) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '5') LIMIT 1[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 135ms (View: 3, DB: 1) | 200 OK [http://localhost/login]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2009-06-29 18:35:29) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"remember_me"=>"0", "password"=>"[FILTERED]", "email"=>"lola@lola.lola"}, "action"=>"create", "authenticity_token"=>"lAdsUQnmDhlRmLU5vBwGQ5f4EcOEPYXgrec5wJwQLTQ=", "controller"=>"user_sessions"}
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = '5') LIMIT 1[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 5) LIMIT 1[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE (LOWER("users".email) = 'lola@lola.lola') LIMIT 1[0m
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 44ms (View: 6, DB: 1) | 200 OK [http://localhost/user_session]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2009-06-29 18:36:17) [POST]
+  Parameters: {"commit"=>"Login", "user_session"=>{"remember_me"=>"0", "password"=>"[FILTERED]", "email"=>"lola@lola.info"}, "action"=>"create", "authenticity_token"=>"lAdsUQnmDhlRmLU5vBwGQ5f4EcOEPYXgrec5wJwQLTQ=", "controller"=>"user_sessions"}
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '5') LIMIT 1[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 41ms (View: 6, DB: 1) | 200 OK [http://localhost/user_session]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-06-29 18:36:25) [GET]
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering template within layouts/application
+Rendering home/index
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '5') LIMIT 1[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 5) LIMIT 1[0m
+Completed in 34ms (View: 29, DB: 1) | 200 OK [http://localhost/]
+
+
+Processing UsersController#new (for 127.0.0.1 at 2009-06-29 18:36:26) [GET]
+  Parameters: {"action"=>"new", "controller"=>"users"}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '5') LIMIT 1[0m
+  [4;35;1mUser Load (0.1ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 5) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering users/new
+Rendered users/_form (0.9ms)
+Completed in 134ms (View: 5, DB: 0) | 200 OK [http://localhost/user/new]
+
+
+Processing UsersController#create (for 127.0.0.1 at 2009-06-29 18:36:29) [POST]
+  Parameters: {"commit"=>"Register", "action"=>"create", "authenticity_token"=>"lAdsUQnmDhlRmLU5vBwGQ5f4EcOEPYXgrec5wJwQLTQ=", "controller"=>"users", "user"=>{"password_confirmation"=>"[FILTERED]", "password"=>"[FILTERED]", "email"=>"lola@lola.lola"}}
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '5') LIMIT 1[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 5) LIMIT 1[0m
+  [4;36;1mUser Exists (0.3ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE (LOWER("users"."email") = 'lola@lola.lola') LIMIT 1[0m
+  [4;35;1mUser Exists (0.2ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."persistence_token" = 'd1210bf20f71d6d195c40dc1fcab453fba3ea5dd31b38686a647a8ea23761dbe00da807740399ab8a1bb7e5d8e2937686e41d5a3d7b2ce76e66c9bb85b704ce2') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = '5') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 5) LIMIT 1[0m
+  [4;36;1mUser Create (0.5ms)[0m   [0;1mINSERT INTO "users" ("created_at", "crypted_password", "updated_at", "password_salt", "persistence_token", "email") VALUES('2009-06-29 16:36:29', 'c5426afaac43e300c4c17d92271a700d10a7a6cebb3cc0bad7ccbfc7d3d7be8df3761f6263ac4a5a7c3a91e769042795f87627c6eed4a6fcc4b042e24bd79294', '2009-06-29 16:36:29', 'nCO__GgRd35D_OgFcn1D', 'd1210bf20f71d6d195c40dc1fcab453fba3ea5dd31b38686a647a8ea23761dbe00da807740399ab8a1bb7e5d8e2937686e41d5a3d7b2ce76e66c9bb85b704ce2', 'lola@lola.lola')[0m
+Redirected to http://localhost:3000/
+Completed in 61ms (DB: 2) | 302 Found [http://localhost/account]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-06-29 18:36:29) [GET]
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering template within layouts/application
+Rendering home/index
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."persistence_token" = 'd1210bf20f71d6d195c40dc1fcab453fba3ea5dd31b38686a647a8ea23761dbe00da807740399ab8a1bb7e5d8e2937686e41d5a3d7b2ce76e66c9bb85b704ce2') LIMIT 1[0m
+Completed in 37ms (View: 31, DB: 1) | 200 OK [http://localhost/]
+
+
+Processing CollaborativeGamesController#new (for 127.0.0.1 at 2009-06-29 18:36:34) [GET]
+  Parameters: {"action"=>"new", "controller"=>"collaborative_games"}
+Rendering template within layouts/application
+Rendering collaborative_games/new
+Rendered collaborative_games/_form (0.6ms)
+Completed in 10ms (View: 4, DB: 0) | 200 OK [http://localhost/games/new]
+
+
+Processing CollaborativeGamesController#create (for 127.0.0.1 at 2009-06-29 18:36:41) [POST]
+  Parameters: {"commit"=>"Start game", "action"=>"create", "authenticity_token"=>"lAdsUQnmDhlRmLU5vBwGQ5f4EcOEPYXgrec5wJwQLTQ=", "controller"=>"collaborative_games", "collaborative_game"=>{"name"=>"My game", "description"=>"a game"}}
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."persistence_token" = 'd1210bf20f71d6d195c40dc1fcab453fba3ea5dd31b38686a647a8ea23761dbe00da807740399ab8a1bb7e5d8e2937686e41d5a3d7b2ce76e66c9bb85b704ce2') LIMIT 1[0m
+  [4;35;1mCollaborativeGame Create (0.4ms)[0m   [0mINSERT INTO "collaborative_games" ("name", "created_at", "updated_at", "user_id", "description") VALUES('My game', '2009-06-29 16:36:41', '2009-06-29 16:36:41', 1, 'a game')[0m
+Redirected to http://localhost:3000/games/1
+Completed in 35ms (DB: 1) | 302 Found [http://localhost/games]
+
+
+Processing CollaborativeGamesController#show (for 127.0.0.1 at 2009-06-29 18:36:41) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"collaborative_games"}
+  [4;36;1mCollaborativeGame Load (0.3ms)[0m   [0;1mSELECT * FROM "collaborative_games" WHERE ("collaborative_games"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering collaborative_games/show
+  [4;35;1mUser Load (0.4ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 21ms (View: 12, DB: 1) | 200 OK [http://localhost/games/1]
+
+
+Processing UserSessionsController#destroy (for 127.0.0.1 at 2009-06-29 18:37:10) [GET]
+  Parameters: {"action"=>"destroy", "controller"=>"user_sessions"}
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."persistence_token" = 'd1210bf20f71d6d195c40dc1fcab453fba3ea5dd31b38686a647a8ea23761dbe00da807740399ab8a1bb7e5d8e2937686e41d5a3d7b2ce76e66c9bb85b704ce2') LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 17ms (DB: 0) | 302 Found [http://localhost/logout]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-06-29 18:37:11) [GET]
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering template within layouts/application
+Rendering home/index
+Completed in 14ms (View: 12, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing CollaborativeGamesController#new (for 127.0.0.1 at 2009-06-29 18:37:15) [GET]
+  Parameters: {"action"=>"new", "controller"=>"collaborative_games"}
+Rendering template within layouts/application
+Rendering collaborative_games/new
+Rendered collaborative_games/_form (0.7ms)
+Completed in 13ms (View: 4, DB: 0) | 200 OK [http://localhost/games/new]
+
+
+Processing CollaborativeGamesController#create (for 127.0.0.1 at 2009-06-29 18:37:23) [POST]
+  Parameters: {"commit"=>"Start game", "action"=>"create", "authenticity_token"=>"lAdsUQnmDhlRmLU5vBwGQ5f4EcOEPYXgrec5wJwQLTQ=", "controller"=>"collaborative_games", "collaborative_game"=>{"name"=>"Azertty", "description"=>"alleyou"}}
+Rendering template within layouts/application
+Rendering collaborative_games/new
+Rendered collaborative_games/_form (1.3ms)
+Completed in 49ms (View: 6, DB: 0) | 200 OK [http://localhost/games]
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-06-29 18:37:31) [GET]
+  Parameters: {"action"=>"index", "controller"=>"home"}
+Rendering template within layouts/application
+Rendering home/index
+Completed in 29ms (View: 24, DB: 0) | 200 OK [http://localhost/]

@@ -7,11 +7,6 @@ class CollaborativeGamesController < ApplicationController
   end
   
   def show
-    if current_user && @game.leader == current_user.email then
-      @can_edit = true
-    else
-      @can_edit = false
-    end
   end
 
   def new
@@ -23,7 +18,8 @@ class CollaborativeGamesController < ApplicationController
     
   def create
     @game = CollaborativeGame.new(params[:collaborative_game])
-    @game.leader = current_user.email
+    @game.user = current_user
+
 
     respond_to do |format|
       if @game.save

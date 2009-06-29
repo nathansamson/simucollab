@@ -3,7 +3,6 @@
 <% @games.each do |game| %>
     <tr>
         <td><%= link_to game.name, game %></td>
-        <td><%=h game.leader %></td>
         <td><%=h game.description %></td>
     </tr>
 <% end %>
