@@ -18,7 +18,7 @@ class CollaborativeGamesController < ApplicationController
     
   def create
     @game = CollaborativeGame.new(params[:collaborative_game])
-    @game.user = current_user
+    @game.coordinator = current_user
 
 
     respond_to do |format|
