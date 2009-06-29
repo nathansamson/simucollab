@@ -1,5 +1,5 @@
 class CollaborativeGamesController < ApplicationController
-  before_filter :find_game, :only => [:show, :edit, :update]
+  before_filter :find_game, :only => [:show, :edit, :update, :join]
   before_filter :check_game_acl, :only => [:edit, :update]
 
   def index
@@ -7,6 +7,7 @@ class CollaborativeGamesController < ApplicationController
   end
   
   def show
+    @can_edit = true
   end
 
   def new
@@ -42,6 +43,17 @@ class CollaborativeGamesController < ApplicationController
         format.html { render :action => "edit" }
       end
     end
+  end
+  
+  def join
+    begin
+      @game.participants << current_user
+      flash[:notice] = "Joined the game."
+    rescue
+      flash[:error] = "You already joined the game."
+    end
+    
+    redirect_to (@game)
   end
   
   private

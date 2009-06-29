@@ -5,3 +5,12 @@
 <% if @can_edit %>
 <%= link_to "Edit", edit_collaborative_game_path %>
 <% end %>
+
+<h2>Participants</h2>
+<ul>
+<% @game.participants.each do |p| %>
+    <li><%=h p.name %></li>
+<% end %>
+</ul>
+
+<%= link_to "Join", join_collaborative_game_path %>
