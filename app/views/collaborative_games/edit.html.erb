@@ -1,0 +1,7 @@
+<h1>Edit <%=h @game.name %></h1>
+ 
+<% form_for (@game) do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => "form", :object => f %>
+  <%= f.submit "Save game" %>
+<% end %>

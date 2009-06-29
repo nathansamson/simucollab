@@ -1,0 +1,7 @@
+<h1>Start a new game</h1>
+ 
+<% form_for (@game) do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => "form", :object => f %>
+  <%= f.submit "Start game" %>
+<% end %>

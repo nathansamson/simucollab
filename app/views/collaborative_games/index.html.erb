@@ -1,0 +1,12 @@
+<h1>Current games</h1>
+<table>
+<% @games.each do |game| %>
+    <tr>
+        <td><%= link_to game.name, game %></td>
+        <td><%=h game.leader %></td>
+        <td><%=h game.description %></td>
+    </tr>
+<% end %>
+</table>
+
+<%= link_to "Start new game", new_collaborative_game_path %>

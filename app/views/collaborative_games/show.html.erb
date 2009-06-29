@@ -1,0 +1,7 @@
+<h1>Game <%=h @game.name %></h1>
+<p><%=h @game.description %></p>
+<p><%=h @game.leader %></p>
+
+<% if @can_edit %>
+<%= link_to "Edit", edit_collaborative_game_path %>
+<% end %>
