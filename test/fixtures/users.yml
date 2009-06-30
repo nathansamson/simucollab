@@ -1,7 +1,7 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  email: anemail@email.com
+  name: A user
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+two:
+  email: anotheremail@email.com
+  name: Another user with a long name
