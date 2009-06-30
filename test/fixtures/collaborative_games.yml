@@ -1,8 +1,8 @@
 one:
-  name: MyString
-  description: MyText
+  name: First game
+  description: My first game...
   
 
 two:
-  name: MyString
-  description: MyText
+  name: Another game
+  description: Still in the planning phase...

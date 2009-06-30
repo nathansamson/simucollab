@@ -1,6 +1,8 @@
 class CollaborativeGame < ActiveRecord::Base
   validates_presence_of :name
+  validates_length_of :name, :minimum => 5
   validates_presence_of :description
+  validates_length_of :description, :minimum => 10
   validates_presence_of :coordinator
   
   belongs_to :coordinator, :class_name => "User", :foreign_key => "user_id"
