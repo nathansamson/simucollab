@@ -1,8 +1,10 @@
-one:
+agame:
   name: First game
   description: My first game...
-  
+  coordinator: auser
+  participants: player1, player2, player3, player4, player5
 
-two:
+secondgame:
   name: Another game
   description: Still in the planning phase...
+  coordinator: anotheruser

@@ -1,0 +1,13 @@
+firstrevision:
+  game: agame
+  user: player1
+  reverted: false
+  savegame: mysavegame.sve
+  created_at: <%= 2.hours.ago %>
+
+secondrevision:
+  game: agame
+  user: player2
+  reverted: false
+  savegame: mysavegame2.sve
+  created_at: <%= 1.hour.ago %>

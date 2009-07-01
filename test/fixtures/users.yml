@@ -11,3 +11,38 @@ anotheruser:
   password_salt: <%= salt = Authlogic::Random.hex_token %>
   crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("anotheruser" + salt) %>
   persistence_token: <%= Authlogic::Random.hex_token %>
+
+player1:
+  email: player1@player.com
+  name: Player One
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("playerone" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  
+player2:
+  email: player2@player.com
+  name: Player Two
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("playertwo" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+
+player3:
+  email: player1@player.com
+  name: Player Three
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("playerthree" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+
+player4:
+  email: player4@player.com
+  name: Player Four
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("playerfour" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+
+player5:
+  email: player5@player.com
+  name: Player Five
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("playerfive" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>

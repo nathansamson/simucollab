@@ -9,7 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090629204354) do
+ActiveRecord::Schema.define(:version => 20090701144836) do
+
+  create_table "collaborative_game_revisions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "collaborative_game_id"
+    t.boolean  "reverted"
+    t.string   "savegame"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "collaborative_games", :force => true do |t|
     t.string   "name"
