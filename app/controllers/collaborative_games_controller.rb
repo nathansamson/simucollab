@@ -1,5 +1,6 @@
 class CollaborativeGamesController < ApplicationController
   before_filter :find_game, :only => [:show, :edit, :update, :join]
+  before_filter :require_user, :only => [:new, :create, :edit, :update, :join]
   before_filter :check_game_acl, :only => [:edit, :update]
 
   def index
@@ -68,8 +69,8 @@ class CollaborativeGamesController < ApplicationController
     end
     
     def check_game_acl
-      if !current_user || @game.leader != current_user.email then
-        flash[:error] = "You don't have the right to update this game"
+      if !current_user || @game.coordinator != current_user then
+        flash[:error] = "You are not allowed to edit this game"
         redirect_to root_url
       end
     end

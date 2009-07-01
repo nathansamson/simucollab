@@ -8,3 +8,6 @@ auser:
 anotheruser:
   email: anotheremail@email.com
   name: Another user with a long name
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("anotheruser" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
