@@ -114,6 +114,19 @@ class CollaborativeGamesControllerTest < ActionController::TestCase
     assert_equal "Game not found", flash[:error]
   end
   
+  def test_checkout
+    @user_session = UserSession.new(users(:player3))
+    @user_session.save
+
+    game = collaborative_games(:agame)
+    get :checkout, :id => game
+    
+    assert_redirected_to collaborative_game_path(collaborative_games(:agame))
+    assert_equal "You checked out the game. Please check it back in when you are ready.", flash[:notice]
+      
+    assert !game.is_open_to_user?(users(:player2))
+  end
+  
   private
     def create_games
       @some_game = CollaborativeGame.new({:name => "Some game", :description => "Extended description"})

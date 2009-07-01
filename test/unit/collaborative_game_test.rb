@@ -72,7 +72,8 @@ class CollaborativeGameTest < ActiveSupport::TestCase
     current_checkout = game.current_checkout
     assert_equal checkout, current_checkout
     
-    assert game.can_check_in
+    assert game.can_check_in?(users(:player1))
+    assert !game.can_check_in?(users(:player2))
     
     game.check_in "somestring.sve"
     current_checkout = game.last_checkout

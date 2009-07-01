@@ -1,5 +1,5 @@
 class CollaborativeGamesController < ApplicationController
-  before_filter :find_game, :only => [:show, :edit, :update, :join]
+  before_filter :find_game, :only => [:show, :edit, :update, :join, :checkout, :checkin]
   before_filter :require_user, :only => [:new, :create, :edit, :update, :join]
   before_filter :check_game_acl, :only => [:edit, :update]
 
@@ -55,6 +55,41 @@ class CollaborativeGamesController < ApplicationController
     end
     
     redirect_to (@game)
+  end
+  
+  def checkout
+    if @game.is_open_to_user? current_user then
+      @game.checkout current_user
+      flash[:notice] = "You checked out the game. Please check it back in when you are ready."
+    else
+      flash[:error] = "You can not check out this game."
+    end
+    
+    redirect_to (@game)
+  end
+  
+  def checkin
+    upload = params[:savegame]
+    name = upload.original_filename
+    path = Rails.root.join("public", "savegames", name)
+    File.open(path, "wb") { |f| f.write(upload.read) }
+    
+    @game.check_in name
+    flash[:notice] = "Thanks for using Simutrans-collab!"
+    redirect_to (@game)
+  end
+  
+  def download_revision
+    begin
+      revision = CollaborativeGameRevision.find(params[:id])
+    rescue
+      flash[:error] = "File not found."
+      redirect_to root_url
+      return
+    end
+    
+    send_file Rails.root.join("public", "savegames", revision.savegame),
+              :type => "application/octet-stream"
   end
   
   private

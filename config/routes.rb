@@ -7,7 +7,8 @@ ActionController::Routing::Routes.draw do |map|
   map.login "login", :controller => "user_sessions", :action => "new"
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
   
-  map.resources :collaborative_games, :as => "games", :member => { :join => :get }
+  map.resources :collaborative_games, :as => "games", :member => { :join => :get, :checkout => :get }
+  map.download "download/:id", :controller => "collaborative_games", :action => "download_revision"
   
   map.root :controller => "home"
 

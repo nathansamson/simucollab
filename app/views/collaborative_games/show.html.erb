@@ -14,3 +14,35 @@
 </ul>
 
 <%= link_to "Join", join_collaborative_game_path %>
+<% if @game.is_open_to_user? current_user %>
+    <%= link_to "Checkout", checkout_collaborative_game_path %>
+<% end %>
+<% if @game.can_check_in? current_user %>   
+    <h2>Checkin</h2>
+    <% form_tag ({:action => 'checkin'},  :multipart => true) do %>
+        <%= hidden_field_tag(:id, @game.id) %>
+        <%= label_tag(:savegame, "Save file: ") %>
+        <%= file_field_tag(:savegame) %>
+        <%= submit_tag "Checkin" %>
+     <% end %>
+<% end %>
+
+<h2>Revisions</h2>
+<table>
+<% @game.revisions.each do |r| %>
+    <tr>
+        <td><%=h r.user.name %></td>
+        <td><%=h r.created_at %></td>
+        <% if r.reverted %>
+            <td>Reverted</td>
+        <% else %>
+            <td>Still normal</td>
+        <% end %>
+        <% if r.savegame %>
+            <td><%= link_to "Download", download_path(:id => r.id) %></td>
+        <% else %>
+            <td>...</td>
+        <% end %>
+    </tr>
+<% end %>
+</table>

@@ -41,8 +41,8 @@ class CollaborativeGame < ActiveRecord::Base
                           :order => "created_at"
   end
   
-  def can_check_in
-    return current_checkout != nil
+  def can_check_in? user
+    return current_checkout != nil && current_checkout.user == user
   end
   
   def check_in savegame
