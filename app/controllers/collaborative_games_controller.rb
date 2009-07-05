@@ -1,14 +1,14 @@
 class CollaborativeGamesController < ApplicationController
-  before_filter :find_game, :only => [:show, :edit, :update, :join, :checkout, :checkin]
-  before_filter :require_user, :only => [:new, :create, :edit, :update, :join]
-  before_filter :check_game_acl, :only => [:edit, :update]
+  before_filter :find_game, :only => [:show, :edit, :update, :join, :checkout, :checkin, :start]
+  before_filter :require_user, :only => [:new, :create, :edit, :update, :join, :start]
+  before_filter :check_game_acl, :only => [:edit, :update, :start]
 
   def index
     @games = CollaborativeGame.all
   end
   
   def show
-    @can_edit = true
+    @can_start = @can_edit = current_user == @game.coordinator
   end
 
   def new
@@ -76,7 +76,7 @@ class CollaborativeGamesController < ApplicationController
     
     @game.check_in name
     flash[:notice] = "Thanks for using Simutrans-collab!"
-    redirect_to (@game)
+    redirect_to @game
   end
   
   def download_revision
@@ -90,6 +90,17 @@ class CollaborativeGamesController < ApplicationController
     
     send_file Rails.root.join("public", "savegames", revision.savegame),
               :type => "application/octet-stream"
+  end
+  
+  def start
+    upload = params[:savegame]
+    name = upload.original_filename
+    path = Rails.root.join("public", "savegames", name)
+    File.open(path, "wb") { |f| f.write(upload.read) }
+    
+    @game.start_game name
+    flash[:notice] = "The game started"
+    redirect_to @game
   end
   
   private

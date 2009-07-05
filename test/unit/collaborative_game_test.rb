@@ -53,10 +53,10 @@ class CollaborativeGameTest < ActiveSupport::TestCase
     anothergame = collaborative_games(:secondgame)
     
     anothergame.participants << user2
-    assert_equal 1, anothergame.participants.size
+    assert_equal 4, anothergame.participants.size
     
     anothergame.participants << user1
-    assert_equal 2, anothergame.participants.size
+    assert_equal 5, anothergame.participants.size
   end
   
   def test_checkout
@@ -135,5 +135,45 @@ class CollaborativeGameTest < ActiveSupport::TestCase
     
     checkout2 = game.checkout users(:player2)
     assert_equal users(:player2), checkout2.user
+  end
+  
+  def test_users_can_not_checkout_when_not_started
+    game = collaborative_games(:secondgame)
+    
+    assert !game.is_open_to_user?(users(:player3))
+  end
+  
+  def test_start_game
+    game = collaborative_games(:secondgame)
+    
+    assert !game.is_started?
+    game.start_game "firstsave.sve"
+    assert game.is_started?
+    
+    assert game.is_open_to_user? users(:player3)
+  end
+  
+  def test_can_not_revert_first_revision
+    game = collaborative_games(:secondgame)
+    
+    game.start_game "firstsave.sve"
+    
+    game.revert_last_checkout
+    
+    assert game.is_open_to_user?(users(:player3)) # Game should still be running
+    assert_equal "firstsave.sve", game.last_checkout.savegame
+  end
+  
+  def test_revert_prevents_checkin
+    game = collaborative_games(:secondgame)
+    game.start_game "firststave.sve"
+    
+    checkout = game.checkout users(:player3)
+    assert_not_equal nil, checkout
+    
+    game.revert_last_checkout
+    
+    assert !game.can_check_in?(users(:player3))
+    assert_equal nil, game.current_checkout
   end
 end

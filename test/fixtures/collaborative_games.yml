@@ -8,3 +8,4 @@ secondgame:
   name: Another game
   description: Still in the planning phase...
   coordinator: anotheruser
+  participants: player3, player4, player5

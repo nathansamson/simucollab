@@ -17,7 +17,15 @@ class CollaborativeGame < ActiveRecord::Base
       return false
     end
     
+    if !is_started?
+      return false
+    end
+    
     return current_checkout == nil
+  end
+  
+  def is_started?
+    return revisions.size >= 1
   end
   
   def checkout user
@@ -27,7 +35,6 @@ class CollaborativeGame < ActiveRecord::Base
     revision.game = self
     revision.reverted = false
     revision.savegame = nil
-    revision.save
     revisions << revision
     return revision
   end
@@ -52,9 +59,25 @@ class CollaborativeGame < ActiveRecord::Base
   end
   
   def revert_last_checkout
+    if revisions.size == 1
+      return
+    end
     checkout = last_checkout
     checkout.reverted = true
     checkout.save
+    if current_checkout != nil
+      checkout = current_checkout
+      checkout.reverted = true
+      checkout.save
+    end
+  end
+  
+  def start_game filename
+    revision = CollaborativeGameRevision.new
+    revision.user = coordinator
+    revision.reverted = false
+    revision.savegame = filename
+    revisions << revision
   end
     
 end

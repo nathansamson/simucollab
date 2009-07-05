@@ -26,6 +26,15 @@
         <%= submit_tag "Checkin" %>
      <% end %>
 <% end %>
+<% if (not @game.is_started?) && @can_start %>
+    <h2>Start game</h2>
+    <% form_tag ({:action => 'start'},  :multipart => true) do %>
+        <%= hidden_field_tag(:id, @game.id) %>
+        <%= label_tag(:savegame, "Save file: ") %>
+        <%= file_field_tag(:savegame) %>
+        <%= submit_tag "Start game" %>
+     <% end %>
+<% end %>
 
 <h2>Revisions</h2>
 <table>

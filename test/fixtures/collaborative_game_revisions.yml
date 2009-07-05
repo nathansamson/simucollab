@@ -1,3 +1,10 @@
+start:
+  game: agame
+  user: auser
+  reverted: false
+  savegame: mysavegame0.sve
+  created_at: <%= 3.hours.ago %>
+
 firstrevision:
   game: agame
   user: player1
