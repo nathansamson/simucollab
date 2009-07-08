@@ -2,7 +2,7 @@
 <p><%=h @game.description %></p>
 <p><%=h @game.coordinator.name %></p>
 
-<% if @can_edit %>
+<% if current_user.has_role? :coordinator, @game %>
 <%= link_to "Edit", edit_collaborative_game_path %>
 <% end %>
 
@@ -26,7 +26,7 @@
         <%= submit_tag "Checkin" %>
      <% end %>
 <% end %>
-<% if (not @game.is_started?) && @can_start %>
+<% if (not @game.is_started?) && current_user.has_role?(:coordinator, @game) %>
     <h2>Start game</h2>
     <% form_tag ({:action => 'start'},  :multipart => true) do %>
         <%= hidden_field_tag(:id, @game.id) %>

@@ -1,14 +1,32 @@
 class CollaborativeGamesController < ApplicationController
   before_filter :find_game, :only => [:show, :edit, :update, :join, :checkout, :checkin, :start]
-  before_filter :require_user, :only => [:new, :create, :edit, :update, :join, :start]
-  before_filter :check_game_acl, :only => [:edit, :update, :start]
+  #before_filter :require_user, :only => [:new, :create, :edit, :update, :join, :start]
+  
+  access_control do
+    allow :admin
+    
+    actions :index, :show do
+      allow all
+    end
+    
+    actions :new, :create do
+      allow :gamemanager
+    end
+    
+    actions :edit, :update, :start do
+      allow :coordinator, :for => :game
+    end
+    
+    actions :join, :checkout do
+      allow logged_in
+    end
+  end
 
   def index
     @games = CollaborativeGame.all
   end
   
   def show
-    @can_start = @can_edit = current_user == @game.coordinator
   end
 
   def new
@@ -25,6 +43,7 @@ class CollaborativeGamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
+        current_user.has_role! :coordinator, @game
         flash[:notice] = "Game created"
         format.html { redirect_to(@game) }
       else
@@ -112,13 +131,6 @@ class CollaborativeGamesController < ApplicationController
         flash[:error] = "Game not found"
         redirect_to root_url
        end
-    end
-    
-    def check_game_acl
-      if !current_user || @game.coordinator != current_user then
-        flash[:error] = "You are not allowed to edit this game"
-        redirect_to root_url
-      end
     end
 
 end

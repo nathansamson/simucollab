@@ -11,6 +11,7 @@ class CollaborativeGame < ActiveRecord::Base
                           :order => "name ASC"
   
   has_many :revisions, :class_name => "CollaborativeGameRevision"
+  acts_as_authorization_object :role_class_name => 'Coordinator'
   
   def is_open_to_user? user
     if not participants.exists? user then

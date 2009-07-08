@@ -1,0 +1,13 @@
+<h1><%= @user.name %></h1>
+<p>Email: <%= @user.email %>
+
+<h2>Rights</h2>
+<% @roles.each do |role| %>
+    <p><%= role %>: 
+    <% if @user.has_role? role, nil %>
+        Enabled <%= link_to "Revoke", admin_revoke_user_path(@user, role) %>
+    <% else %>
+        Disabled  <%= link_to "Assign", admin_assign_user_path(@user, role) %>
+    <% end %>
+    </p>
+<% end %>

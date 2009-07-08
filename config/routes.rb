@@ -7,6 +7,13 @@ ActionController::Routing::Routes.draw do |map|
   map.login "login", :controller => "user_sessions", :action => "new"
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
   
+  map.namespace :admin do |admin|
+    # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
+    admin.resources :user
+    admin.revoke_user "user/:id/revoke/:role", :action => "revoke", :controller => "user"
+    admin.assign_user "user/:id/assign/:role", :action => "assign", :controller => "user"
+  end
+  
   map.resources :collaborative_games, :as => "games", :member => { :join => :get, :checkout => :get }
   map.download "download/:id", :controller => "collaborative_games", :action => "download_revision"
   

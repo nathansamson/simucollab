@@ -69,11 +69,11 @@ class CollaborativeGamesControllerTest < ActionController::TestCase
     
     get :edit, :id => @some_game.id
     assert_redirected_to root_url
-    assert_equal "You are not allowed to edit this game", flash[:error]
+    assert_equal "Access denied", flash[:notice]
     
     post :update, {:id => @some_game.id, :collaborative_game => { :name => "Updated name", :description => "Updated description" } }
     assert_redirected_to root_url
-    assert_equal "You are not allowed to edit this game", flash[:error]
+    assert_equal "Access denied", flash[:notice]
   end
   
   def test_join_game
@@ -132,5 +132,7 @@ class CollaborativeGamesControllerTest < ActionController::TestCase
       @some_game = CollaborativeGame.new({:name => "Some game", :description => "Extended description"})
       @some_game.coordinator = users(:auser)
       @some_game.save
+      users(:auser).has_role!(:gamemanager)
+      users(:auser).has_role!(:coordinator, @some_game)
     end
 end

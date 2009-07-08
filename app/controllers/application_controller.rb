@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
+  rescue_from 'Acl9::AccessDenied', :with => :access_denied
 
   private
     def current_user_session
@@ -33,6 +34,15 @@ class ApplicationController < ActionController::Base
         redirect_to account_url
         return false
       end
+    end
+    
+    def access_denied
+      if current_user == nil
+        flash[:notice] = "You must be logged in to access this page"
+      else
+        flash[:notice] = "Access denied"
+      end
+      redirect_to root_url
     end
 
 end

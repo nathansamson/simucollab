@@ -2,12 +2,27 @@
 <html>
   <head>
     <title>Simutrans collaborative -- BETA</title>
+    <%= stylesheet_link_tag "style" %> 
   </head>
   <body>
     <div id="header">
       <h1>Simutrans Collaborative</h1>
+      <ol id="menu">
+        <li><%= link_to "Home", root_url %></li>
+        <li><%= link_to "Games", collaborative_games_path %></li>
+        <li><a href="http://simutrans.com">Simutrans</a></li>
+      </ol>
     </div>
     <div id="content">
+      <div id="userbox">
+         <% if current_user %>
+          Welcome <%= current_user.name %>, 
+          <%= link_to "Logout", logout_path %>
+        <% else %>
+          <%= link_to "Register", new_user_path %> |
+          <%= link_to "Login", login_path %>
+        <% end %>
+      </div>
       <% if flash[:notice] %>
         <p class="notice"><%= flash[:notice] %></p>
       <% end %>
