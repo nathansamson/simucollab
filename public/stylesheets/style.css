@@ -1,0 +1,67 @@
+body {
+	width: 960px;
+	margin: auto;
+	margin-top: 10px;
+	font-family: Verdana, sans-serif;
+}
+
+#header {
+	border: solid 1px black;
+	text-align: center;
+}
+
+#header h1 {
+	font-size: 40px;
+}
+
+#content h1 {
+	font-size: 25px;
+}
+
+#content h2 {
+	font-size: 20px;
+}
+
+#content p {
+	text-align: justify;
+}
+
+a, a:visited {
+	color: black;
+}
+
+#userbox {
+	float: right;
+}
+
+/* ---------- Menu ----------  */
+
+ol#menu {
+	list-style-type: none;
+	margin-bottom: 10px; /* size of padding */
+}
+
+ol#menu li {
+	display: inline;
+}
+
+ol#menu li a {
+	text-decoration: none;
+	border: solid 1px black;
+	border-bottom-width: 0px;
+	padding: 10px 20px;
+}
+
+ol#menu li a:hover {
+	background-color: yellow;
+}
+
+/* --------- Tables --------- */
+table th {
+	background-color: red;
+	border: solid 1px black;
+}
+
+td {
+	border: solid 1px black;
+}
