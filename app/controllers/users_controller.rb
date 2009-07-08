@@ -9,6 +9,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
+      if User.all.size == 1
+        @user.has_role! :admin
+      end
       flash[:notice] = "Account registered!"
       redirect_to root_url
     else

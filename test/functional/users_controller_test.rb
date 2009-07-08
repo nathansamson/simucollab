@@ -13,6 +13,23 @@ class UsersControllerTest < ActionController::TestCase
     
     assert_redirected_to root_url
     assert_equal "Account registered!", flash[:notice]
+    
+    user = User.find_by_email("someemail@email.info")
+    assert !user.has_role?(:admin)
+  end
+  
+  def test_new_and_make_admin
+    User.all.each do |user|
+      user.destroy
+    end
+    
+    post :create, :user => { :email => "someemail@email.info", :name => "Some name",
+                             :password => "apass", :password_confirmation => "apass" }
+    
+    assert_redirected_to root_url
+    assert_equal "Account registered!", flash[:notice]
+    user = User.find_by_email("someemail@email.info")
+    assert user.has_role? :admin
   end
   
   def test_new_with_errors

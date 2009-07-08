@@ -30,12 +30,12 @@ class Admin::UserController < ApplicationController
   end
 
   private
-      def find_user
-        begin
-          @user = User.find(params[:id])
-        rescue ActiveRecord::RecordNotFound
-          flash[:notice] = "User not found"
-          redirect_to admin_user_index_path
-        end
+    def find_user
+      begin
+        @user = User.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        flash[:notice] = "User not found"
+        redirect_to admin_user_index_path
       end
+    end
 end
